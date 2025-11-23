@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Search } from '../../services/search';
-import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [FormsModule, RouterLink, RouterLinkActive],
+  imports: [FormsModule],
   templateUrl: './search-bar.html',
   styleUrl: './search-bar.css',
 })

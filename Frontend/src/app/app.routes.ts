@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { SearchShow } from './pages/search-show/search-show';
+import { Episodes } from './pages/episodes/episodes';
 
 
 export const routes: Routes = [
@@ -12,6 +13,9 @@ export const routes: Routes = [
   },
   {
     path: 'search-show/:show', component: SearchShow
+  },
+  {
+    path: 'episodes/:id', component: Episodes
   },
 
 ];

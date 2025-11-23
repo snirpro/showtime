@@ -1,0 +1,25 @@
+.allShows{
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.oneShow{
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #c9c2c2;  
+}
+.oneShow img {
+  border-radius: 6px;
+}
+.details li {
+  margin-bottom: 6px;
+  font-size: 16px;
+}

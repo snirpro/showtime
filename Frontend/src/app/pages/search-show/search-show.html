@@ -1,17 +1,24 @@
-<p>
+<body>
+    <div class="allShows">
+
     @for (result of results; track $index) {
-        <div>
-            <img src = {{result.Image.medium}}>
-            <li>Show id: {{result.id}} </li>
-            <li>Show name: {{result.ShowName}}</li>
-            <li>Show Geners:
-                 @for (Gener of result.Generes; track $index){
-                    {{Gener}}
-                }</li>
-            <li>Average Rating: {{result.Rating.average}}</li>
+        <div class="oneShow">
+            <div class="image">
+                <img src = {{result.Image.medium}}>
+            </div>
+            <div class="details">
+                <li>Show id: {{result.id}} </li>
+                <li>Show name: {{result.ShowName}}</li>
+                <li>Show Geners:
+                    @for (Gener of result.Generes; track $index){
+                        {{Gener}}
+                    }</li>
+                <li>Average Rating: {{result.Rating.average}}</li>
+                <li>Language: {{result.Language}}</li>
 
+                <button (click)="Episodes(result.id)">Episodes List </button>
+            </div>
         </div>
-
-
-
-}</p>
+    }
+    </div>
+</body>

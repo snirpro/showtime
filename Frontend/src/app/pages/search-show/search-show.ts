@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Search } from '../../services/search';
 
 @Component({
@@ -18,7 +18,7 @@ export class SearchShow {
 
 
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.route.paramMap.subscribe(params => {
       this.show = params.get('show') ?? '';
       this.Init();
@@ -31,4 +31,9 @@ export class SearchShow {
     this.results = results; 
     });
 
-  }}
+  }
+
+  Episodes(id: string){
+    this.router.navigate(['/episodes', id])
+  }
+}
