@@ -1,1 +1,17 @@
-<p>search-show works!</p>
+<p>
+    @for (result of results; track $index) {
+        <div>
+            <img src = {{result.Image.medium}}>
+            <li>Show id: {{result.id}} </li>
+            <li>Show name: {{result.ShowName}}</li>
+            <li>Show Geners:
+                 @for (Gener of result.Generes; track $index){
+                    {{Gener}}
+                }</li>
+            <li>Average Rating: {{result.Rating.average}}</li>
+
+        </div>
+
+
+
+}</p>

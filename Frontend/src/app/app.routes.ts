@@ -11,7 +11,7 @@ export const routes: Routes = [
     path: 'home', component: Home
   },
   {
-    path: 'search-show', component: SearchShow
+    path: 'search-show/:show', component: SearchShow
   },
 
 ];

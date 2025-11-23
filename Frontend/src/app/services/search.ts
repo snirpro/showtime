@@ -1,12 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Search {
-    httpClient = inject(HttpClient);
+  httpClient = inject(HttpClient);
   private baseUrl = 'http://localhost:3000';
   constructor() { }
 
