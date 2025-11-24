@@ -1,7 +1,14 @@
-<body>
-    <div class="allShows">
+<div>
+    <li>value1 = {{selectedGenre}}</li>
+    <li>value2 = {{selectedLanguages}}</li>
+    <li>value3 = {{selectedRating}}</li>
 
+</div>
+
+
+    <div class="allShows">
     @for (result of results; track $index) {
+        @if (cheackLanguageFilter(result.Language) && cheackRaitingFilter(result.Rating.average) && cheackGenerFilter(result.Generes)) {
         <div class="oneShow">
             <div class="image">
                 <img src = {{result.Image.medium}}>
@@ -18,7 +25,8 @@
 
                 <button (click)="Episodes(result.id)">Episodes List </button>
             </div>
-        </div>
+        </div>  
+        }
     }
     </div>
-</body>
+
