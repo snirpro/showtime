@@ -1,0 +1,40 @@
+.filters-header {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.filter-label {
+    cursor: pointer;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.filter-label:hover {
+    background-color: #f0f0f0;
+}
+
+.filter-section {
+    background: #fafafa;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 6px;
+}
+
+.checkbox-row, .radio-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+.checkbox-container, 
+.radio-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px 20px;
+}

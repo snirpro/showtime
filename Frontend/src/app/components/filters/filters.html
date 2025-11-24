@@ -1,38 +1,109 @@
-<div class="filters-container">
-      <div class="dropdown">
-    <label class="Labels" for="GeneresForm">Geners</label>
-        <select id= "GenersForm" name="Genre" class="MULTIPLE_SelectForm" [(ngModel)]="selectedGenre" (ngModelChange)="onFiltersChange()" multiple>
-            <option [ngValue]="'action'">Action</option>
-            <option [ngValue]="'adult'">Adult</option>
-            <option [ngValue]="'adventure'">Adventure</option>
-            <option [ngValue]="'anime'">Anime</option>
-            <option [ngValue]="'children'">Children</option>
-            <option [ngValue]="'comedy'">Comedy</option>
-            <option [ngValue]="'crime'">Crime</option>
-            <option [ngValue]="'diy'">DIY</option>
-            <option [ngValue]="'drama'">Drama</option>
-            <option [ngValue]="'espionage'">Espionage</option>
-            <option [ngValue]="'family'">Family</option>
-            <option [ngValue]="'fantasy'">Fantasy</option>
-            <option [ngValue]="'food'">Food</option>
-            <option [ngValue]="'history'">History</option>
-            <option [ngValue]="'horror'">Horror</option>
-            <option [ngValue]="'legal'">Legal</option>
-            <option [ngValue]="'medical'">Medical</option>
-            <option [ngValue]="'music'">Music</option>
-            <option [ngValue]="'mystery'">Mystery</option>
-            <option [ngValue]="'nature'">Nature</option>
-            <option [ngValue]="'romance'">Romance</option>
-            <option [ngValue]="'science-fiction'">Science-Fiction</option>
-            <option [ngValue]="'sports'">Sports</option>
-            <option [ngValue]="'supernatural'">Supernatural</option>
-            <option [ngValue]="'thriller'">Thriller</option>
-            <option [ngValue]="'travel'">Travel</option>
-            <option [ngValue]="'war'">War</option>
-            <option [ngValue]="'western'">Western</option>
-        </select>
+<div class="filters-header">
+    <span 
+      class="filter-label" 
+      (click)="toggleSection('genres')">
+      Genres
+    </span>
+
+    <span 
+      class="filter-label" 
+      (click)="toggleSection('rating')">
+      Rating
+    </span>
+
+    <span 
+      class="filter-label" 
+      (click)="toggleSection('languages')">
+      Languages
+    </span>
 </div>
-  <div class="dropdown">
+<div class="filter-section">
+    @if(openSection === 'languages'){
+        <div class="checkbox-container">
+            @for (language of languagesList; track $index) {
+                <div class="checkbox-row">
+                    <input 
+                    type="checkbox"
+                    [value]="language.value"
+                    [checked]="selectedLanguages.includes(language.value)"
+                    (change)="toggleLanguage(language.value, $event)"
+                    />
+                    <label>{{ language.label }}</label>
+                </div>
+            }
+        </div>
+    }
+
+
+    @if(openSection === 'genres'){
+        <div class="checkbox-container">
+           @for (genre of genresList; track $index) {
+                <div class="checkbox-row">
+                    <input 
+                        type="checkbox"
+                        [value]="genre.value"
+                        [checked]="selectedGenre.includes(genre.value)"
+                        (change)="toggleGenre(genre.value, $event)"
+                    />
+                    <label>{{ genre.label }}</label>
+                </div>
+            }
+        </div>
+    }
+
+    @if(openSection === 'rating'){
+        <div class="radio-container">
+        @for (rate of ratingList; track $index) {
+                <div class="radio-row">
+                    <input 
+                        type="radio"
+                        name="ratingOptions"
+                        [value]="rate.value"
+                        [checked]="selectedRating === rate.value"
+                        (change)="selectRating(rate.value)"
+                    />
+                    <label>{{ rate.label }}</label>
+                </div>
+            }
+        </div>
+    }
+</div>
+<!--
+
+<div class="filters-container">
+<div class="dropdown">
+    <label class="Labels">Genres</label>
+
+    <div class="checkbox-item">
+        @for (genre of genresList; track $index) {
+            <input 
+                type="checkbox"
+                [value]="genre.value"
+                [checked]="selectedGenre.includes(genre.value)"
+                (change)="toggleGenre(genre.value, $event)"
+            />
+            <label>{{ genre.label }}</label>
+        }
+    </div>
+  </div>
+
+<div class="dropdown">
+  <label class="Labels">Language</label>
+
+    <div class="checkbox-item">
+    @for (language of languagesList; track $index) {
+        <input 
+        type="checkbox"
+        [value]="language.value"
+        [checked]="selectedLanguages.includes(language.value)"
+        (change)="toggleLanguage(language.value, $event)"
+        />
+        <label>{{ language.label }}</label>
+    }
+    </div>
+
+    </div>
+<div class="dropdown">
     <label class="Labels" for="RatingForm">Rating</label>
         <select id= "RatingForm" name="Rating" class="ONE_SelectForm" [(ngModel)]="selectedRating" (ngModelChange)="onFiltersChange()">
         <option [ngValue]="'1+'">1+</option>
@@ -44,91 +115,7 @@
         <option [ngValue]="'8+'">8+</option>
         <option [ngValue]="'9+'">9+</option>
         </select>
+    </div>
+
 </div>
-  <div class="dropdown">
-    <label class="Labels" for="LanguageForm">Language</label>
-        <select id= "LanguageForm" name="Languages" class="MULTIPLE_SelectForm"  [(ngModel)]="selectedLanguages" (ngModelChange)="onFiltersChange()" multiple>
-            <option [ngValue]="'afrikaans'">Afrikaans</option>
-            <option [ngValue]="'albanian'">Albanian</option>
-            <option [ngValue]="'arabic'">Arabic</option>
-            <option [ngValue]="'armenian'">Armenian</option>
-            <option [ngValue]="'azerbaijani'">Azerbaijani</option>
-            <option [ngValue]="'basque'">Basque</option>
-            <option [ngValue]="'belarusian'">Belarusian</option>
-            <option [ngValue]="'bengali'">Bengali</option>
-            <option [ngValue]="'bosnian'">Bosnian</option>
-            <option [ngValue]="'bulgarian'">Bulgarian</option>
-            <option [ngValue]="'burmese'">Burmese</option>
-            <option [ngValue]="'catalan'">Catalan</option>
-            <option [ngValue]="'chechen'">Chechen</option>
-            <option [ngValue]="'chinese'">Chinese</option>
-            <option [ngValue]="'croatian'">Croatian</option>
-            <option [ngValue]="'czech'">Czech</option>
-            <option [ngValue]="'danish'">Danish</option>
-            <option [ngValue]="'divehi'">Divehi</option>
-            <option [ngValue]="'dutch'">Dutch</option>
-            <option [ngValue]="'english'">English</option>
-            <option [ngValue]="'estonian'">Estonian</option>
-            <option [ngValue]="'fijian'">Fijian</option>
-            <option [ngValue]="'finnish'">Finnish</option>
-            <option [ngValue]="'french'">French</option>
-            <option [ngValue]="'galician'">Galician</option>
-            <option [ngValue]="'georgian'">Georgian</option>
-            <option [ngValue]="'german'">German</option>
-            <option [ngValue]="'greek'">Greek</option>
-            <option [ngValue]="'gujarati'">Gujarati</option>
-            <option [ngValue]="'hebrew'">Hebrew</option>
-            <option [ngValue]="'hindi'">Hindi</option>
-            <option [ngValue]="'hungarian'">Hungarian</option>
-            <option [ngValue]="'icelandic'">Icelandic</option>
-            <option [ngValue]="'indonesian'">Indonesian</option>
-            <option [ngValue]="'irish'">Irish</option>
-            <option [ngValue]="'italian'">Italian</option>
-            <option [ngValue]="'japanese'">Japanese</option>
-            <option [ngValue]="'javanese'">Javanese</option>
-            <option [ngValue]="'kannada'">Kannada</option>
-            <option [ngValue]="'kazakh'">Kazakh</option>
-            <option [ngValue]="'kongo'">Kongo</option>
-            <option [ngValue]="'korean'">Korean</option>
-            <option [ngValue]="'kyrgyz'">Kyrgyz</option>
-            <option [ngValue]="'lao'">Lao</option>
-            <option [ngValue]="'latin'">Latin</option>
-            <option [ngValue]="'latvian'">Latvian</option>
-            <option [ngValue]="'lithuanian'">Lithuanian</option>
-            <option [ngValue]="'luxembourgish'">Luxembourgish</option>
-            <option [ngValue]="'malagasy'">Malagasy</option>
-            <option [ngValue]="'malay'">Malay</option>
-            <option [ngValue]="'malayalam'">Malayalam</option>
-            <option [ngValue]="'marathi'">Marathi</option>
-            <option [ngValue]="'mongolian'">Mongolian</option>
-            <option [ngValue]="'norwegian'">Norwegian</option>
-            <option [ngValue]="'panjabi'">Panjabi</option>
-            <option [ngValue]="'pashto'">Pashto</option>
-            <option [ngValue]="'persian'">Persian</option>
-            <option [ngValue]="'polish'">Polish</option>
-            <option [ngValue]="'portuguese'">Portuguese</option>
-            <option [ngValue]="'romanian'">Romanian</option>
-            <option [ngValue]="'russian'">Russian</option>
-            <option [ngValue]="'serbian'">Serbian</option>
-            <option [ngValue]="'sinhalese'">Sinhalese</option>
-            <option [ngValue]="'slovak'">Slovak</option>
-            <option [ngValue]="'slovenian'">Slovenian</option>
-            <option [ngValue]="'spanish'">Spanish</option>
-            <option [ngValue]="'swahili'">Swahili</option>
-            <option [ngValue]="'swedish'">Swedish</option>
-            <option [ngValue]="'tagalog'">Tagalog</option>
-            <option [ngValue]="'tamil'">Tamil</option>
-            <option [ngValue]="'telugu'">Telugu</option>
-            <option [ngValue]="'thai'">Thai</option>
-            <option [ngValue]="'turkish'">Turkish</option>
-            <option [ngValue]="'ukrainian'">Ukrainian</option>
-            <option [ngValue]="'urdu'">Urdu</option>
-            <option [ngValue]="'uzbek'">Uzbek</option>
-            <option [ngValue]="'vietnamese'">Vietnamese</option>
-            <option [ngValue]="'welsh'">Welsh</option>
-            <option [ngValue]="'yoruba'">Yoruba</option>
-            <option [ngValue]="'zulu'">Zulu</option>
-            <option [ngValue]="'scottish-gaelic'">Scottish Gaelic</option>
-        </select>
-</div>
-</div>
+-->
