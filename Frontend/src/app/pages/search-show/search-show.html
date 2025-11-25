@@ -1,32 +1,33 @@
-<div>
-    <li>value1 = {{selectedGenre}}</li>
-    <li>value2 = {{selectedLanguages}}</li>
-    <li>value3 = {{selectedRating}}</li>
+  @if (filteredResults.length === 0) {
+    <div class="no-results">No shows found</div>
+  }
+
+<div class="allShows">
+
+  @for (result of filteredResults; track $index) {
+    <div class="oneShow">
+      <div class="image">
+        <img src="{{ result.Image.medium }}">
+      </div>
+      <div class="details">
+        <li><strong>Show name: </strong>{{result.ShowName}}</li>
+        <li><strong>Geners:</strong>
+          @for (Gener of result.Generes; track $index) {
+            @if($index>0){
+            | {{Gener}}
+            }@else{
+              {{Gener}}
+            }
+            
+          }
+        </li>
+        <li>Average Rating: {{result.Rating.average}}</li>
+        <li>Language: {{result.Language}}</li>
+
+        <button (click)="Episodes(result.id)">Episodes List</button>
+      </div>
+    </div>
+  }
 
 </div>
-
-
-    <div class="allShows">
-    @for (result of results; track $index) {
-        @if (cheackLanguageFilter(result.Language) && cheackRaitingFilter(result.Rating.average) && cheackGenerFilter(result.Generes)) {
-        <div class="oneShow">
-            <div class="image">
-                <img src = {{result.Image.medium}}>
-            </div>
-            <div class="details">
-                <li>Show id: {{result.id}} </li>
-                <li>Show name: {{result.ShowName}}</li>
-                <li>Show Geners:
-                    @for (Gener of result.Generes; track $index){
-                        {{Gener}}
-                    }</li>
-                <li>Average Rating: {{result.Rating.average}}</li>
-                <li>Language: {{result.Language}}</li>
-
-                <button (click)="Episodes(result.id)">Episodes List </button>
-            </div>
-        </div>  
-        }
-    }
-    </div>
 

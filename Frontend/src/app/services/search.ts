@@ -17,6 +17,7 @@ export class Search {
   selectedRating$ = new BehaviorSubject<string>("");
   selectedLanguages$ = new BehaviorSubject<string[]>([]);
 
+  //function that get send the search query from the search bar to the server 
 searchShows(query: string): Observable<any> {
   return this.httpClient.get(`${this.baseUrl}/search/shows?q=${query}`);
 }

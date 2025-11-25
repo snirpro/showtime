@@ -1,23 +1,39 @@
 <body>
     <div class="allEpisodes">
 
-    @for (result of results; track $index) {
-        <div class="oneEpisode">
-            @if (result.image != null) {
-                <div class="image">
-                     <img src = {{result.image.medium}}>
-                </div>
-            }
+        @for (result of paginatedResults; track $index) {
+            <div class="oneEpisode">
 
-            <div class="details">
-                <li>Episode id: {{result.id}} </li>
-                <li>episode name: {{result.EpisodeName}}</li>
-                <li>season: {{result.numSeason}}</li>
-                <li>episode:{{result.numEpisode}}</li>
-                <li>summary: {{result.summary}}</li>
+                @if (result.image != null) {
+                    <div class="image">
+                        <img src="{{result.image.medium}}">
+                    </div>
+                }
+
+                <div class="details">
+                    <li><strong>name:</strong> {{result.EpisodeName}}</li>
+                    <li><strong>season:</strong> {{result.numSeason}}</li>
+                    <li><strong>episode:</strong> {{result.numEpisode}}</li>
+                    <li><strong>summary:</strong> {{result.summary}}</li>
+                </div>
+
             </div>
-        </div>
-    }
+        }
+
     </div>
 
+    <!-- Pagination Buttons -->
+    <div class="pagination">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">
+            Previous
+        </button>
+
+        <span>Page {{currentPage}} / {{totalPages}}</span>
+
+        <button 
+            (click)="nextPage()"
+            [disabled]="currentPage >= totalPages">
+            Next
+        </button>
+    </div>
 </body>

@@ -9,6 +9,7 @@ import { Search } from '../../services/search';
   styleUrl: './filters.css',
 })
 export class Filters {
+  //all the languages
 languagesList = [
   { label: 'Afrikaans', value: 'afrikaans' },
   { label: 'Albanian', value: 'albanian' },
@@ -93,6 +94,7 @@ languagesList = [
   { label: 'Scottish Gaelic', value: 'scottish-gaelic' }
 ];
 
+//all the geners 
 genresList = [
   { label: 'Action', value: 'action' },
   { label: 'Adult', value: 'adult' },
@@ -123,6 +125,7 @@ genresList = [
   { label: 'War', value: 'war' },
   { label: 'Western', value: 'western' }
 ];
+//evry rating 
 ratingList = [
   { label: '1+', value: '1+' },
   { label: '2+', value: '2+' },
@@ -135,30 +138,37 @@ ratingList = [
   { label: '9+', value: '9+' }
 ];
 
-
+ //initialize 3 variables for shared data between the filter component and the search-show component
   selectedLanguages: string[] = [];
   selectedRating: string = "";
   selectedGenre: string[] = [];
+
+  //initialize variable that will check which filter to open
   openSection: string | null = null;
+
   constructor(private searchService: Search){}
 
+  //function that change the shared data at the search service 
   onFiltersChange() {
   this.searchService.selectedGenre$.next(this.selectedGenre);
   this.searchService.selectedRating$.next(this.selectedRating);
   this.searchService.selectedLanguages$.next(this.selectedLanguages);
-}
+  }
+  
+  //function that adds and remove values from the Genres filter shared data and update it 
 toggleGenre(value: string, event: any) {
   if (event.target.checked) {
-    // מוסיף את הערך
+    //add the value to the shered data
     this.selectedGenre.push(value);
   } else {
-    // מסיר את הערך
+    // remove the value vrom the shared data
     this.selectedGenre = this.selectedGenre.filter(v => v !== value);
   }
 
   this.onFiltersChange();
 }
 
+//function that adds and remove values from the Languages filter shared data and update it 
 toggleLanguage(value: string, event: any) {
   if (event.target.checked) {
     this.selectedLanguages.push(value);
@@ -168,16 +178,24 @@ toggleLanguage(value: string, event: any) {
 
   this.onFiltersChange();
 }
+//update the Rating filter shared data
 selectRating(value: string) {
   this.selectedRating = value;
   this.onFiltersChange();
 }
-
+//function that open and close the filter section acording to which filter is pressed
 toggleSection(section: string) {
   if (this.openSection === section) {
-    this.openSection = null; // סגירה
+    this.openSection = null; //close
   } else {
-    this.openSection = section; // פתיחה
+    this.openSection = section; //open
   }
+}
+//function that clear all the shared data 
+CleanFilters(){
+this.selectedRating = "";
+this.selectedGenre = [];
+this.selectedLanguages = []
+this.onFiltersChange();
 }
 }

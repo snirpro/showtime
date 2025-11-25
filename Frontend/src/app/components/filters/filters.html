@@ -16,106 +16,64 @@
       (click)="toggleSection('languages')">
       Languages
     </span>
+    <div class="clean_btn">
+        <button (click)="CleanFilters()">
+            clean filters
+        </button>
+    </div>
 </div>
-<div class="filter-section">
-    @if(openSection === 'languages'){
-        <div class="checkbox-container">
-            @for (language of languagesList; track $index) {
-                <div class="checkbox-row">
-                    <input 
-                    type="checkbox"
-                    [value]="language.value"
-                    [checked]="selectedLanguages.includes(language.value)"
-                    (change)="toggleLanguage(language.value, $event)"
-                    />
-                    <label>{{ language.label }}</label>
-                </div>
-            }
-        </div>
-    }
 
 
-    @if(openSection === 'genres'){
-        <div class="checkbox-container">
-           @for (genre of genresList; track $index) {
-                <div class="checkbox-row">
-                    <input 
+@if(openSection != null){
+    <div class="filter-section">
+        @if(openSection === 'languages'){
+            <div class="checkbox-container">
+                @for (language of languagesList; track $index) {
+                    <div class="checkbox-row">
+                        <input 
                         type="checkbox"
-                        [value]="genre.value"
-                        [checked]="selectedGenre.includes(genre.value)"
-                        (change)="toggleGenre(genre.value, $event)"
-                    />
-                    <label>{{ genre.label }}</label>
-                </div>
-            }
-        </div>
-    }
+                        [value]="language.value"
+                        [checked]="selectedLanguages.includes(language.value)"
+                        (change)="toggleLanguage(language.value, $event)"
+                        />
+                        <label>{{ language.label }}</label>
+                    </div>
+                }
+            </div>
+        }
 
-    @if(openSection === 'rating'){
-        <div class="radio-container">
-        @for (rate of ratingList; track $index) {
-                <div class="radio-row">
-                    <input 
-                        type="radio"
-                        name="ratingOptions"
-                        [value]="rate.value"
-                        [checked]="selectedRating === rate.value"
-                        (change)="selectRating(rate.value)"
-                    />
-                    <label>{{ rate.label }}</label>
-                </div>
-            }
-        </div>
-    }
-</div>
-<!--
 
-<div class="filters-container">
-<div class="dropdown">
-    <label class="Labels">Genres</label>
+        @if(openSection === 'genres'){
+            <div class="checkbox-container">
+            @for (genre of genresList; track $index) {
+                    <div class="checkbox-row">
+                        <input 
+                            type="checkbox"
+                            [value]="genre.value"
+                            [checked]="selectedGenre.includes(genre.value)"
+                            (change)="toggleGenre(genre.value, $event)"
+                        />
+                        <label>{{ genre.label }}</label>
+                    </div>
+                }
+            </div>
+        }
 
-    <div class="checkbox-item">
-        @for (genre of genresList; track $index) {
-            <input 
-                type="checkbox"
-                [value]="genre.value"
-                [checked]="selectedGenre.includes(genre.value)"
-                (change)="toggleGenre(genre.value, $event)"
-            />
-            <label>{{ genre.label }}</label>
+        @if(openSection === 'rating'){
+            <div class="radio-container">
+            @for (rate of ratingList; track $index) {
+                    <div class="radio-row">
+                        <input 
+                            type="radio"
+                            name="ratingOptions"
+                            [value]="rate.value"
+                            [checked]="selectedRating === rate.value"
+                            (change)="selectRating(rate.value)"
+                        />
+                        <label>{{ rate.label }}</label>
+                    </div>
+                }
+            </div>
         }
     </div>
-  </div>
-
-<div class="dropdown">
-  <label class="Labels">Language</label>
-
-    <div class="checkbox-item">
-    @for (language of languagesList; track $index) {
-        <input 
-        type="checkbox"
-        [value]="language.value"
-        [checked]="selectedLanguages.includes(language.value)"
-        (change)="toggleLanguage(language.value, $event)"
-        />
-        <label>{{ language.label }}</label>
-    }
-    </div>
-
-    </div>
-<div class="dropdown">
-    <label class="Labels" for="RatingForm">Rating</label>
-        <select id= "RatingForm" name="Rating" class="ONE_SelectForm" [(ngModel)]="selectedRating" (ngModelChange)="onFiltersChange()">
-        <option [ngValue]="'1+'">1+</option>
-        <option [ngValue]="'2+'">2+</option>
-        <option [ngValue]="'3+'">4+</option>
-        <option [ngValue]="'5+'">5+</option>
-        <option [ngValue]="'6+'">6+</option>
-        <option [ngValue]="'7+'">7+</option>
-        <option [ngValue]="'8+'">8+</option>
-        <option [ngValue]="'9+'">9+</option>
-        </select>
-    </div>
-
-</div>
--->
+}

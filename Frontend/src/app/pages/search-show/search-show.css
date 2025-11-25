@@ -1,25 +1,102 @@
-.allShows{
-  width: 90%;
-  margin: auto;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* Wrapper for all shows */
+.allShows {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px 20px;
+    flex-direction:row;
+    gap: 20px;
+    width: 100%;
+    margin: 30px auto;
 }
 
-.oneShow{
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: #c9c2c2;  
+/* No results */
+.no-results {
+
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #4a60e7;
+    background: #e6e9ff;
+    border-radius: 12px;
 }
-.oneShow img {
-  border-radius: 6px;
+
+/* One show card */
+.oneShow {
+    display: flex;        
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 20px;
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    transition: 0.2s ease-in-out;
 }
+
+.oneShow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+/* Show image */
+.oneShow .image img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid #dee3ff;
+}
+
+/* Details section */
+.details {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+}
+
 .details li {
-  margin-bottom: 6px;
-  font-size: 16px;
+    list-style: none;
+    font-size: 16px;
+    background: #f7f8ff;
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 8px;
+
+}
+
+/* Episodes Button */
+.details button {
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: #4a60e7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+    width: fit-content;
+}
+
+.details button:hover {
+    background: #3b4fbe;
+    transform: translateY(-2px);
+}
+
+.details button:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 1500px) {
+    .allShows {
+    grid-template-columns: repeat(3, 1fr);
+    }
 }

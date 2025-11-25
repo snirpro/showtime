@@ -15,16 +15,11 @@ export class SearchBar {
 
   showName: string = '';
   searchService = new Search();
-  results: any;
-
   constructor(private router: Router) {}
 
 
+  /*function that sends the search term as a parameter
+    to the search-show component and navigate to it*/
 onSubmit() {
   this.router.navigate(['/search-show', this.showName])
-
-  this.searchService.searchShows(this.showName).subscribe(results => {
-    console.log('results:', results);
-    this.results = results;  
-    });
 }}

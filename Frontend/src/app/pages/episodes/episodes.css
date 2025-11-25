@@ -1,0 +1,73 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* Pagination container */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 30px auto;
+    font-size: 18px;
+}
+
+.pagination button {
+    padding: 10px 18px;
+    background: #4a60e7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.pagination button:hover {
+    background: #3b4fbe;
+    transform: translateY(-2px);
+}
+
+.pagination button:disabled {
+    background: #b8b8b8;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Episodes layout */
+.allEpisodes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    max-width: 900px;
+    margin: 20px ;
+}
+
+.oneEpisode {
+    display: flex;
+    gap: 20px;
+    background: white;
+    padding: 18px;
+
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.oneEpisode:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.oneEpisode .image img {
+
+    border-radius: 10px;
+    border: 2px solid #dee3ff;
+}
+
+.details li {
+    list-style: none;
+    font-size: 16px;
+    background: #f7f8ff;
+    margin: 10px;
+    padding: 6px 10px;
+    border-radius: 8px;
+}

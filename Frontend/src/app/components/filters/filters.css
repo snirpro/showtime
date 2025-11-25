@@ -1,14 +1,18 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
 .filters-header {
     display: flex;
     gap: 20px;
     padding: 10px 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #0b147d;
 }
+
 
 .filter-label {
     cursor: pointer;
-    font-weight: 600;
-    padding: 6px 12px;
+    font-weight: 550;
+    padding: 12px 20px;
     border-radius: 4px;
     transition: 0.2s;
 }
@@ -16,7 +20,25 @@
 .filter-label:hover {
     background-color: #f0f0f0;
 }
+.clean_btn button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #4a60e7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
 
+.clean_btn button:hover {
+    background: #3b4fbe;
+    transform: translateY(-2px);
+}
+
+.clean_btn button:active {
+    transform: translateY(0px);
+}
 .filter-section {
     background: #fafafa;
     padding: 15px;
@@ -35,6 +57,16 @@
 .checkbox-container, 
 .radio-container {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     gap: 10px 20px;
 }
+
+@media (max-width: 1322px) {
+.checkbox-container, 
+.radio-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px 20px;
+}
+}
+
