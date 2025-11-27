@@ -1,6 +1,6 @@
 <body>
     <div class="allEpisodes">
-
+        <!--Display all existing episodes on the current page -->
         @for (result of paginatedResults; track $index) {
             <div class="oneEpisode">
 
@@ -14,7 +14,7 @@
                     <li><strong>name:</strong> {{result.EpisodeName}}</li>
                     <li><strong>season:</strong> {{result.numSeason}}</li>
                     <li><strong>episode:</strong> {{result.numEpisode}}</li>
-                    <li><strong>summary:</strong> {{result.summary}}</li>
+                    <li ><strong>summary:</strong> {{cleanSummary(result.summary)}} </li>
                 </div>
 
             </div>
@@ -24,7 +24,9 @@
 
     <!-- Pagination Buttons -->
     <div class="pagination">
-        <button (click)="prevPage()" [disabled]="currentPage === 1">
+        <button 
+            (click)="prevPage()" 
+            [disabled]="currentPage === 1">
             Previous
         </button>
 
@@ -35,5 +37,20 @@
             [disabled]="currentPage >= totalPages">
             Next
         </button>
+
+            <!-- Jump to page -->
+    <div class="jumpBox">
+        <input 
+            type="number" 
+
+            min="1" 
+            [max]="totalPages"
+            [(ngModel)]="jumpPageNumber"
+            (ngModelChange)="onJumpInputChange($event)"
+            placeholder= "Go to page..."
+        />
+        <button (click)="jumpToPage()">Go</button>
     </div>
+    </div>
+
 </body>

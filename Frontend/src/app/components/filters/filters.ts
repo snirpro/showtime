@@ -161,7 +161,7 @@ toggleGenre(value: string, event: any) {
     //add the value to the shered data
     this.selectedGenre.push(value);
   } else {
-    // remove the value vrom the shared data
+    // remove the value from the shared data
     this.selectedGenre = this.selectedGenre.filter(v => v !== value);
   }
 

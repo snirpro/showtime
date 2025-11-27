@@ -1,9 +1,10 @@
+  <!--Check if there is shows to display-->
   @if (filteredResults.length === 0) {
     <div class="no-results">No shows found</div>
   }
 
 <div class="allShows">
-
+  <!--Display the available shows-->
   @for (result of filteredResults; track $index) {
     <div class="oneShow">
       <div class="image">

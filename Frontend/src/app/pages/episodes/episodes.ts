@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute} from '@angular/router';
 import { EpisodesList } from '../../services/episodes-list';
 
 @Component({
   selector: 'app-episodes',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './episodes.html',
   styleUrl: './episodes.css',
 })
@@ -15,8 +16,10 @@ export class Episodes {
 
   //Pagination initilize
   currentPage: number = 1;//first page 
-  itemsPerPage: number = 20;//amount of episodes in the page
+  itemsPerPage: number = 10;//amount of episodes in the page
   paginatedResults: any[] = []; //the episodes information for the page
+  jumpPageNumber: number = this.currentPage;
+
 
 //the constractor get the show id as a parameter from the search-show component and keep it in a variable
   constructor(private route: ActivatedRoute, private EpisodeService: EpisodesList){
@@ -46,6 +49,7 @@ export class Episodes {
     if ((this.currentPage * this.itemsPerPage) < this.results.length) {
       this.currentPage++;
       this.updatePagination();
+      this.jumpPageNumber = this.currentPage;
     }
   }
   //move to previos page and update the PaginatedResults
@@ -53,11 +57,45 @@ export class Episodes {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.updatePagination();
+      this.jumpPageNumber = this.currentPage;
     }
   }
  //calculate the amount of pages in total
   get totalPages(): number {
     return Math.ceil(this.results.length / this.itemsPerPage);
   }
+ //clean the <p> and </p> tags from the summary
+  cleanSummary(summary: string){
+    if (summary == null){
+      return "";
+    }
+    return summary.replace(/<\/?p>/g,'')
+  }
+
+ //jump to the page that given in the input field
+  jumpToPage() {
+    const page = Number(this.jumpPageNumber);
+
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updatePagination();
+      this.jumpPageNumber = this.currentPage;  
+    }
+  }
+
+  //check every value that enters the input filed if its valid page number
+  onJumpInputChange(value: any) {
+    const num = Number(value);
+    if (num > this.totalPages) {
+      this.jumpPageNumber = this.totalPages;
+    } 
+    else if (num < 1) {
+      this.jumpPageNumber = 1;
+    } 
+    else {
+      this.jumpPageNumber = num;
+    }
+  }
+
 
 }

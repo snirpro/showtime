@@ -3,7 +3,7 @@ import { Home } from './pages/home/home';
 import { SearchShow } from './pages/search-show/search-show';
 import { Episodes } from './pages/episodes/episodes';
 
-
+//make paths for the different web pages
 export const routes: Routes = [
   {
     path: '', redirectTo: '/home', pathMatch: 'full'

@@ -1,13 +1,11 @@
-* {
-    font-family: Arial, Helvetica, sans-serif;
-}
+
+/*filter headers*/
 .filters-header {
     display: flex;
     gap: 20px;
     padding: 10px 0;
     border-bottom: 1px solid #0b147d;
 }
-
 
 .filter-label {
     cursor: pointer;
@@ -20,6 +18,9 @@
 .filter-label:hover {
     background-color: #f0f0f0;
 }
+
+
+/*clean filter button*/
 .clean_btn button {
     padding: 12px 20px;
     font-size: 16px;
@@ -39,6 +40,8 @@
 .clean_btn button:active {
     transform: translateY(0px);
 }
+
+/*active filter section*/
 .filter-section {
     background: #fafafa;
     padding: 15px;
@@ -61,6 +64,7 @@
     gap: 10px 20px;
 }
 
+/* Responsive */
 @media (max-width: 1322px) {
 .checkbox-container, 
 .radio-container {

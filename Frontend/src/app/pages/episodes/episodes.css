@@ -1,6 +1,4 @@
-* {
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 /* Pagination container */
 .pagination {
     display: flex;
@@ -11,7 +9,7 @@
     font-size: 18px;
 }
 
-.pagination button {
+.pagination button, .jumpBox button {
     padding: 10px 18px;
     background: #4a60e7;
     color: white;
@@ -21,7 +19,7 @@
     transition: 0.2s;
 }
 
-.pagination button:hover {
+.pagination button:hover, .jumpBox button:hover{
     background: #3b4fbe;
     transform: translateY(-2px);
 }
@@ -31,6 +29,26 @@
     cursor: not-allowed;
     transform: none;
 }
+.jumpBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.jumpBox input {
+    width: 110px;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 2px solid #bfc7ff;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.2s ease-in-out;
+}
+
+.jumpBox input:focus {
+    border-color: #4a60e7;
+    box-shadow: 0 0 5px rgba(74, 96, 231, 0.3);
+}
 
 /* Episodes layout */
 .allEpisodes {
@@ -38,12 +56,14 @@
     flex-direction: column;
     gap: 20px;
     width: 90%;
-    max-width: 900px;
-    margin: 20px ;
+    max-width: 1200px;
+    margin: auto ;
 }
 
 .oneEpisode {
     display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 20px;
     background: white;
     padding: 18px;
@@ -67,7 +87,13 @@
     list-style: none;
     font-size: 16px;
     background: #f7f8ff;
+    width: 95%;
     margin: 10px;
     padding: 6px 10px;
     border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .oneEpisode {flex-direction: column;}
 }

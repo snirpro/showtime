@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Search } from '../../services/search';
 import { Router } from "@angular/router";
 
 @Component({
@@ -14,7 +13,6 @@ import { Router } from "@angular/router";
 export class SearchBar {
 
   showName: string = '';
-  searchService = new Search();
   constructor(private router: Router) {}
 
 
