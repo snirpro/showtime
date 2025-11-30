@@ -26,4 +26,5 @@ router.get('/shows',async (req, res) => {
     const cleanedData = data.map(result => cleanShowResult(result));
     res.send(cleanedData);
 });
+//export the router
 module.exports = router;

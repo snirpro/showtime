@@ -26,5 +26,5 @@ router.get('/:id',async (req, res) => {
     const cleanedData = data.map(result => (cleanEpisodeResult(result)));
   res.send(cleanedData);
 });
-
+//export the router
 module.exports = router;
