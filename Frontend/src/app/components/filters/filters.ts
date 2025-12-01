@@ -147,50 +147,50 @@ ratingList = [
   openSection: string | null = null;
 
   constructor(private searchService: Search){}
+  //function that open and close the filter section acording to which filter is pressed
+  toggleSection(section: string) {
+    if (this.openSection === section) {
+      this.openSection = null; //close
+    } else {
+      this.openSection = section; //open
+    }
+  }
+  //function that adds and remove values from the Genres filter shared data and update it 
+  toggleGenre(value: string, event: any) {
+    if (event.target.checked) {
+      //add the value to the shered data
+      this.selectedGenre.push(value);
+    } else {
+      // remove the value from the shared data
+      this.selectedGenre = this.selectedGenre.filter(v => v !== value);
+    }
 
+    this.onFiltersChange();
+  }
+
+//function that adds and remove values from the Languages filter shared data and update it 
+  toggleLanguage(value: string, event: any) {
+    if (event.target.checked) {
+      this.selectedLanguages.push(value);
+    } else {
+      this.selectedLanguages = this.selectedLanguages.filter(v => v !== value);
+    }
+
+    this.onFiltersChange();
+  }
+//update the Rating filter shared data
+  selectRating(value: string) {
+    this.selectedRating = value;
+    this.onFiltersChange();
+  }
   //function that change the shared data at the search service 
   onFiltersChange() {
   this.searchService.selectedGenre$.next(this.selectedGenre);
   this.searchService.selectedRating$.next(this.selectedRating);
   this.searchService.selectedLanguages$.next(this.selectedLanguages);
   }
-  
-  //function that adds and remove values from the Genres filter shared data and update it 
-toggleGenre(value: string, event: any) {
-  if (event.target.checked) {
-    //add the value to the shered data
-    this.selectedGenre.push(value);
-  } else {
-    // remove the value from the shared data
-    this.selectedGenre = this.selectedGenre.filter(v => v !== value);
-  }
 
-  this.onFiltersChange();
-}
 
-//function that adds and remove values from the Languages filter shared data and update it 
-toggleLanguage(value: string, event: any) {
-  if (event.target.checked) {
-    this.selectedLanguages.push(value);
-  } else {
-    this.selectedLanguages = this.selectedLanguages.filter(v => v !== value);
-  }
-
-  this.onFiltersChange();
-}
-//update the Rating filter shared data
-selectRating(value: string) {
-  this.selectedRating = value;
-  this.onFiltersChange();
-}
-//function that open and close the filter section acording to which filter is pressed
-toggleSection(section: string) {
-  if (this.openSection === section) {
-    this.openSection = null; //close
-  } else {
-    this.openSection = section; //open
-  }
-}
 //function that clear all the shared data 
 CleanFilters(){
 this.selectedRating = "";

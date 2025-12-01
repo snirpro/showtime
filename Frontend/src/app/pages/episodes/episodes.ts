@@ -31,7 +31,6 @@ export class Episodes {
 //sends the show id to the episode-list service to get back all the episodes of the show
   Init(){
     this.EpisodeService.showList(this.id).subscribe(results => {
-    console.log('show results:', results);
     this.results = results; 
     this.updatePagination();
     });
@@ -64,13 +63,6 @@ export class Episodes {
   get totalPages(): number {
     return Math.ceil(this.results.length / this.itemsPerPage);
   }
- //clean the <p> and </p> tags from the summary
-  cleanSummary(summary: string){
-    if (summary == null){
-      return "";
-    }
-    return summary.replace(/<\/?p>/g,'')
-  }
 
  //jump to the page that given in the input field
   jumpToPage() {
@@ -96,6 +88,14 @@ export class Episodes {
       this.jumpPageNumber = num;
     }
   }
+   //clean the <p> and </p> tags from the summary
+  cleanSummary(summary: string){
+    if (summary == null){
+      return "";
+    }
+    return summary.replace(/<\/?p>/g,'')
+  }
+
 
 
 }

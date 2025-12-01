@@ -33,17 +33,10 @@ export class SearchShow {
   //send the show name to the search service to get all the shows information the API sends back
   Init(){
     this.searchService.searchShows(this.show).subscribe(results => {
-    console.log('show results:', results);
     this.results = results; 
     });
-
   }
-
-  //navigate to episodes component with the wanted show id 
-  Episodes(id: string){
-    this.router.navigate(['/episodes', id])
-  }
-
+  
   //do subscribe to the filters shared data so the component will be able to know the changes in real time
   ngOnInit() {
   this.searchService.selectedGenre$.subscribe(v =>  this.selectedGenre = v );
@@ -51,7 +44,15 @@ export class SearchShow {
   this.searchService.selectedLanguages$.subscribe(v => this.selectedLanguages = v);
   }
 
-  //check if the geners of the show are in the selected geners from the filter
+  //filter the shows according to the filters that chosen and return only the shows that stend in the conditions
+  get filteredResults() {
+    return this.results.filter(result =>
+      this.cheackLanguageFilter(result.Language) &&
+      this.cheackRaitingFilter(result.Rating.average) &&
+      this.cheackGenerFilter(result.Generes)
+    );
+  }
+    //check if the geners of the show are in the selected geners from the filter
   cheackGenerFilter(geners: string[]){
     this.GenreFlag = false;
     if(this.selectedGenre.length == 0){
@@ -84,13 +85,15 @@ export class SearchShow {
     }
   }
 
-  //filter the shows according to the filters that chosen and return only the shows that stend in the conditions
-get filteredResults() {
-  return this.results.filter(result =>
-    this.cheackLanguageFilter(result.Language) &&
-    this.cheackRaitingFilter(result.Rating.average) &&
-    this.cheackGenerFilter(result.Generes)
-  );
-}
+  //navigate to episodes component with the wanted show id 
+  Episodes(id: string){
+    this.router.navigate(['/episodes', id])
+  }
+
+
+
+
+
+
 
 }
