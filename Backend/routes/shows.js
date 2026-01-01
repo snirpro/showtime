@@ -15,15 +15,38 @@ function cleanShowResult(result) {
     };
 }
 
+function cleanBaseShowResult(result) {
+    return {
+        id: result.id,
+        ShowName: result.name,
+        Generes: result.genres,
+        Rating: result.rating,
+        Language: result.language,
+        Image: result.image
+    };
+}
+
 //function that get the show name as a query from the frontend
 //send the show name to the API to get shows with a similar name
 //sends back the shows as a JSON response
 router.get('/shows',async (req, res) => {
     const query = req.query.q;
+    console.log(`Searching for shows with query: ${query}`);
+    cleanedData = [];
+    
+    if (query == ''){
+    const response = await fetch(`${BaseURL}/shows`);
+    const data = await response.json();
+    cleanedData = data.map(result => cleanBaseShowResult(result));
+
+    }else{
+
     const response = await fetch(`${BaseURL}/search/shows?q=${query}`);
     const data = await response.json();
+    cleanedData = data.map(result => cleanShowResult(result));
+    }
+    
 
-    const cleanedData = data.map(result => cleanShowResult(result));
     res.send(cleanedData);
 });
 //export the router

@@ -7,9 +7,14 @@
   <!--Display the available shows-->
   @for (result of filteredResults; track $index) {
     <div class="oneShow">
+      @if(!result.Image){
+        <div class="no-image">No Image Available</div>
+      }@else{
       <div class="image">
         <img src="{{ result.Image.medium }}">
       </div>
+      }
+
       <div class="details">
         <li><strong>Show name: </strong>{{result.ShowName}}</li>
         <li><strong>Geners:</strong>
